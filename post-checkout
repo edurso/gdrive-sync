@@ -40,7 +40,8 @@ def download_file_from_google_drive(id, destination):
 
 
 if __name__ == "__main__":
-    FILE_ID="1gwywIVIGBq8oQDgYBrJQ0CSW_-Q4R7Oq"
+
+    FILE_ID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
     TARGET="rover_descriptions/meshes.tar.gz"
     print(f'Downloading meshes from file {FILE_ID} to {TARGET}')
 
