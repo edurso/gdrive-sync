@@ -1,2 +1,8 @@
 #!/bin/bash
-source ../../rover_descriptions/sync-meshes.sh
+
+FILE_ID="12Z5RaWZeCXcVahgP4dn3qGnFcMoOVyED"
+TARGET="rover_descriptions/meshes.tar.gz"
+
+python3 rover_descriptions/retrieve-meshes.py $FILE_ID $TARGET
+
+tar -xvf $TARGET
