@@ -45,19 +45,11 @@ if __name__ == "__main__":
     TARGET="rover_descriptions/meshes.tar.gz"
     print(f'Downloading meshes from file {FILE_ID} to {TARGET}')
 
-    import sys
-    if len(sys.argv) is not 3:
-        print("Usage: python google_drive.py drive_file_id destination_file_path")
-    else:
-        file_id = sys.argv[1]
-        destination = sys.argv[2]
-        download_file_from_google_drive(file_id, destination)
-
+    download_file_from_google_drive(FILE_ID, TARGET)
     print('Download Complete')
 
     import tarfile
     file = tarfile.open(TARGET)
     file.extractall('rover_descriptions')
     file.close()
-
     print('Extraction Complete')
