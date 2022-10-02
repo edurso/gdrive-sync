@@ -49,6 +49,9 @@ if __name__ == "__main__":
 
     import tarfile
     file = tarfile.open(TARGET)
-    file.extractall('rover_descriptions')
+    file.extractall('rover_descriptions/meshes')
     file.close()
-    print('Extraction Complete!')
+    print('Extraction Complete')
+
+    import os
+    os.remove(TARGET) 
