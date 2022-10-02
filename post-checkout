@@ -1,0 +1,2 @@
+#!/bin/bash
+source ../../rover_descriptions/sync-meshes.sh
