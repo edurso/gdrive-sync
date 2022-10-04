@@ -1,65 +1,12 @@
-#!/usr/bin/env python3
+#!/bin/bash
 
-from __future__ import print_function
+FILEID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
+echo 'Downloading meshes'
 
-import io
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=${FILEID}' -r -A 'uc*' -e robots=off -nd
+echo 'Download Complete'
 
-import google.auth
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaIoBaseDownload
+tar -xf meshes.tar.gz --directory='rover_descriptions/'
+echo 'Extraction Complete'
 
-
-def download_file(real_file_id):
-    """Downloads a file
-    Args:
-        real_file_id: ID of the file to download
-    Returns : IO object with location.
-
-    Load pre-authorized user credentials from the environment.
-    TODO(developer) - See https://developers.google.com/identity
-    for guides on implementing OAuth2 for the application.
-    """
-    creds, _ = google.auth.default()
-
-    try:
-        # create drive api client
-        service = build('drive', 'v3', credentials=creds)
-
-        file_id = real_file_id
-
-        # pylint: disable=maybe-no-member
-        request = service.files().get_media(fileId=file_id)
-        file = io.BytesIO()
-        downloader = MediaIoBaseDownload(file, request)
-        done = False
-        while done is False:
-            status, done = downloader.next_chunk()
-            print(F'Download {int(status.progress() * 100)}.')
-
-    except HttpError as error:
-        print(F'An error occurred: {error}')
-        file = None
-
-    return file.getvalue()
-
-
-if __name__ == "__main__":  
-
-    FILE_ID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
-    TARGET="rover_descriptions/meshes.tar.gz"
-    print(f'Downloading meshes from file {FILE_ID} to {TARGET}')
-
-    download_file(real_file_id=FILE_ID)
-    print('Download Complete')
-
-    import tarfile
-    file = tarfile.open(TARGET)
-    file.extractall('rover_descriptions/meshes')
-    file.close()
-    print('Extraction Complete')
-
-    import os
-    os.remove(TARGET) 
-    print('Cleaned Mesh Directory')
-
+rm -f meshes.tar.gz
