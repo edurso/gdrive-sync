@@ -1,14 +1,17 @@
 #!/bin/bash
 
-FILEID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
+FILEID='1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q'
+TARGET='rover_descriptions/meshes/'
 echo 'Downloading Meshes'
 
 $(which python3) -m pip install gdown
 gdown --id $FILEID
 echo 'Download Complete'
 
-tar -xf meshes.tar.gz --directory='rover_descriptions/meshes/'
+mkdir -p $TARGET 
+tar -xf meshes.tar.gz --directory=$TARGET
 echo 'Extraction Complete'
 
 rm -f meshes.tar.gz
 echo 'Directory Clean'
+
