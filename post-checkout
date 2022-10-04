@@ -9,7 +9,7 @@ gdown --id $FILEID
 echo 'Download Complete'
 
 mkdir -p $TARGET 
-tar -xf meshes.tar.gz --directory=$TARGET
+tar -xvf meshes.tar.gz --directory=$TARGET
 echo 'Extraction Complete'
 
 rm -f meshes.tar.gz
