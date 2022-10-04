@@ -1,15 +1,14 @@
 #!/bin/bash
 
 FILEID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
-echo 'Downloading meshes'
+echo 'Downloading Meshes'
 
 $(which python3) -m pip install gdown
 gdown --id $FILEID
-
-# wget --output-document meshes.tar.gz --no-check-certificate "https://docs.google.com/uc?export=download&id=${FILEID}" -r -A 'uc*' -e robots=off -nd
 echo 'Download Complete'
 
-tar -xf meshes.tar.gz --directory='rover_descriptions/'
+tar -xf meshes.tar.gz --directory='rover_descriptions/meshes/'
 echo 'Extraction Complete'
 
 rm -f meshes.tar.gz
+echo 'Directory Clean'
