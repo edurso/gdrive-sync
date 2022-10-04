@@ -3,7 +3,7 @@
 FILEID="1upQ4DZOTr6HeSOILPMNMdNu4LyknGW4Q"
 echo 'Downloading meshes'
 
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=${FILEID}' -r -A 'uc*' -e robots=off -nd
+wget --no-check-certificate "https://docs.google.com/uc?export=download&id=${FILEID}" -r -A 'uc*' -e robots=off -nd
 echo 'Download Complete'
 
 tar -xf meshes.tar.gz --directory='rover_descriptions/'
